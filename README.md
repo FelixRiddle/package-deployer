@@ -2,7 +2,13 @@
 
 Simple app to deploy all given packages.
 
-## Rules
+## Usage
+
+```bash
+npm run cli -- --packages-path
+```
+
+## Development Rules
 
 Rules that have to be followed when developing this repository.
 
@@ -15,3 +21,7 @@ When adding my own dependencies they need to be built and published before, but 
 - [x] Get all packages at a path
 	- [x] When gathering the list, add a black list to ignore some packages
 	This is principally useful for the main monorepo "perseverancia-deployment"
+
+- [x] Configuration file
+	- [x] YAML file(because it's easy to read)
+	- [x] Blacklist names

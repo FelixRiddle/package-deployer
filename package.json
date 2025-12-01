@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"cli": "tsx ./src/cli/index.ts"
 	},
 	"repository": {
 		"type": "git",
@@ -19,6 +19,7 @@
 	"homepage": "https://github.com/FelixRiddle/package-deployer#readme",
 	"dependencies": {
 		"simple-git": "^3.30.0",
+		"yaml": "^2.8.2",
 		"yargs": "^18.0.0"
 	},
 	"devDependencies": {

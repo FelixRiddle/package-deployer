@@ -14,6 +14,7 @@ nginx_build/
 temp/
 .husky/_
 frontend-config.json
+deployer-config.yaml
 
 # Output
 app_log.txt

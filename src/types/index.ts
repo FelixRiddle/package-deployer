@@ -3,3 +3,7 @@ export interface IAppInfo {
 	path: string;
 	name: string;
 }
+
+export interface IPackageDeployerConfiguration {
+	blacklist: Array<string>;
+}
