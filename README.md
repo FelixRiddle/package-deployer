@@ -25,3 +25,12 @@ When adding my own dependencies they need to be built and published before, but 
 - [x] Configuration file
 	- [x] YAML file(because it's easy to read)
 	- [x] Blacklist names
+
+- [ ] Print packages obtained
+
+Would serve as a dry run to check if the blacklist works
+
+- [ ] Package deployment
+	- [ ] Run "npm install" on the package
+	- [ ] Run "npm build"
+	- [ ] Finally "npm publish"
