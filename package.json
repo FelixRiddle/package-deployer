@@ -1,8 +1,16 @@
 {
-	"name": "package-deployer",
+	"name": "@perseverancia/package-deployer",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": "./src/index.ts"
+	},
 	"scripts": {
 		"cli": "tsx ./src/cli/index.ts"
 	},
