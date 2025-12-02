@@ -34,3 +34,5 @@ Would serve as a dry run to check if the blacklist works
 	- [x] Run "npm install" on the package
 	- [x] Run "npm build"
 	- [x] Finally "npm publish"
+
+- [x] Save package deployment result as json

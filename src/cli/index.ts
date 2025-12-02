@@ -1,5 +1,6 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import fsp from "fs/promises";
 
 import PackageDeployerConfiguration from "../PackageDeployerConfiguration";
 import { getAllApps } from "../apps";
@@ -66,13 +67,48 @@ async function main() {
 				let deployPromises = [];
 				for (const nodePackage of nodePackages) {
 					const handler = (async () => {
-						await nodePackage.install();
-						await nodePackage.build();
-						await nodePackage.publish();
+						try {
+							await nodePackage.install();
+							await nodePackage.build();
+
+							// Check that the package isn't private
+							if (!nodePackage.packageJson.private) {
+								await nodePackage.publish();
+							}
+
+							console.log(
+								`Package ${nodePackage.packageName} deployed`
+							);
+							return {
+								packageName: nodePackage.packageName,
+								name: nodePackage.name,
+								success: true,
+							};
+						} catch (err) {
+							console.log(
+								`Package ${nodePackage.packageName} failed to be deployed`
+							);
+							return {
+								packageName: nodePackage.packageName,
+								name: nodePackage.name,
+								success: false,
+							};
+						}
 					})();
 					deployPromises.push(handler);
 				}
-				await Promise.all(deployPromises);
+				const packageDeploymentResult = await Promise.all(
+					deployPromises
+				);
+
+				// Save as json
+				await fsp.writeFile(
+					"deploymentResult.json",
+					JSON.stringify(packageDeploymentResult),
+					{
+						encoding: "utf-8",
+					}
+				);
 			}
 		)
 		.help()

@@ -15,6 +15,7 @@ temp/
 .husky/_
 frontend-config.json
 deployer-config.yaml
+deploymentResult.json
 
 # Output
 app_log.txt
