@@ -156,6 +156,16 @@ export function dependencyBuildOrder(nodePackages: Array<NodePackage>) {
 
 	// Check for cycles
 	if (sortedPackages.length !== workspacePackages.length) {
+		// Filter the original list:
+		const cyclePackages = workspacePackages
+			.filter((pkg) => !sortedPackages.includes(pkg))
+			.map((pkg) => pkg.packageJson.name);
+
+		console.error(
+			"Circular Dependency Detected! Packages involved:",
+			cyclePackages
+		);
+
 		// This indicates a circular dependency, which prevents a valid build order.
 		throw new Error(
 			"Error: Circular dependency detected in workspace packages. A valid build order cannot be determined"
