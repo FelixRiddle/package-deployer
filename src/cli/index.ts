@@ -73,10 +73,11 @@ async function main() {
 
 				// Create node packages class
 				const nodePackages = await appsToNodePackages(allPackages);
+				const buildOrder = dependencyBuildOrder(nodePackages);
 
 				// Deploy all packages
 				let deployPromises = [];
-				for (const nodePackage of nodePackages) {
+				for (const nodePackage of buildOrder) {
 					const handler = (async () => {
 						try {
 							await nodePackage.install();
