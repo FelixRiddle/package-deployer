@@ -3,7 +3,7 @@ import fsp from "fs/promises";
 
 import { IPackageDeployerConfiguration } from "./types";
 
-const FILE_NAME = "deployer-config.yaml";
+export const DEPLOYER_CONFIG_FILENAME = "deployer-config.yaml";
 
 /**
  * Package deployer configuration
@@ -29,7 +29,7 @@ export default class PackageDeployerConfiguration {
 	 * Load
 	 */
 	static async load() {
-		const fileData = await fsp.readFile(FILE_NAME, {
+		const fileData = await fsp.readFile(DEPLOYER_CONFIG_FILENAME, {
 			encoding: "utf-8",
 		});
 		const configuration = YAML.parse(fileData);
@@ -42,7 +42,7 @@ export default class PackageDeployerConfiguration {
 	 */
 	async save() {
 		const data = YAML.stringify(this.configuration);
-		await fsp.writeFile(FILE_NAME, data, {
+		await fsp.writeFile(DEPLOYER_CONFIG_FILENAME, data, {
 			encoding: "utf-8",
 		});
 	}
